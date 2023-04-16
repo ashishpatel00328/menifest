@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-django
+  labels:
+    app: hello-django
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-django
+  template:
+    metadata:
+      labels:
+        app: hello-django
+    spec:
+      containers:
+        - name: hello-django
+          image: public.ecr.aws/n6d9k7i0/django:18
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
